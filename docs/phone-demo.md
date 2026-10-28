@@ -44,15 +44,18 @@ CDN, `getUserMedia` preview, one-point focal calibration stored in `localStorage
 on any phone, no install, easy to show in a meeting. This is the shortest path to
 "look, it tells me to move left".
 
-**M2 — Unity app (1–2 days).** AR Foundation + `ARMarkerManager`, one scene: detect the
-bundle → save anchor + pose → on relaunch, relocalise and draw arrows. This is the version
-that survives an app restart and a different lighting condition.
+**M2 — native app. DONE, shipped as [tagpose-android](https://github.com/wzqvip/tagpose-android).**
+Kotlin + CameraX + BoofCV instead of Unity: no editor, no licence, no NDK. The pose core is
+plain JVM code and was validated against this CLI on real photos before any Android code
+was written (distance 1 mm, rotation 0.35 deg). It survives an app restart, because the
+saved pose is persisted.
 
 **M3 — hybrid.** Keep the tag as the fine reference and let ARKit/ARCore carry the coarse
 world frame, so the user does not have to keep the whole board in view.
 
-Do **not** start at M2: the bundle geometry, the tolerance tuning and the cue signs are all
-cheap to iterate in Python or JS and expensive to iterate in a native build.
+Do **not** start with the app: the bundle geometry, the tolerance tuning and the cue signs
+are all cheap to iterate in Python and expensive to iterate in a native build. That is why
+the detector was exercised on the desktop JVM with the real photos first.
 
 ## 3. Porting checklist
 

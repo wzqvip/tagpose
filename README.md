@@ -171,11 +171,15 @@ the tags for your working distance. Keep the board flat, matte, and rigid.
 
 ## Phone app
 
-The Python CLI is the reference implementation and the calibration path. A phone app is a
-second UI over the same math; see [docs/phone-demo.md](docs/phone-demo.md) for the
-available off-the-shelf routes (Unity AR Foundation's `ARMarkerManager` already supports
-AprilTag, ARCore/ARKit provide intrinsics and persistent anchors) and why this repo does
-not ship one yet.
+**Android app: [tagpose-android](https://github.com/wzqvip/tagpose-android)** — download the
+APK from its [releases](https://github.com/wzqvip/tagpose-android/releases), install, and you
+get the same measure → save → guide loop on a phone. It uses BoofCV's pure-Java AprilTag 3
+detector (the Android OpenCV build has no `aruco` bindings), and its pose core was checked
+against this CLI on the same four photos: distance agrees to 1 mm, rotation to 0.35°.
+
+The Python CLI is still the reference implementation and the calibration path. For the
+off-the-shelf alternatives and the reasons behind the choices, see
+[docs/phone-demo.md](docs/phone-demo.md).
 
 ## 中文说明
 
